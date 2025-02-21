@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown</title>
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            
+            background-color: var(--tg-color-scheme);
+            color: white;
+            padding: 1rem;
+            font-family: sans-serif;
+        }
+        .logo {
+            /*margin-bottom: 2rem;*/
+            width: 200px;
+            height: 200px;
+        }
+        h1 {
+            font-size: 2.25rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+        }
+        .days {
+            font-size: 3.75rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        .time {
+            font-size: 1.875rem;
+            margin-bottom: 2rem;
+        }
+        .subscribe-btn {
+            background-color: rgb(59, 130, 246);
+            color: white;
+            font-weight: bold;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .subscribe-btn:hover {
+            background-color: rgb(37, 99, 235);
+        }
+        .invite-btn {
+            background-color: rgb(34, 197, 94);
+            color: white;
+            font-weight: bold;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .invite-btn:hover {
+            background-color: rgb(22, 163, 74);
+        }
+    </style>
+</head>
+<body>
+    <img src="/src/assets/Booke.png" alt="Booke" class="logo">
+    
+    <h1>Join the future now</h1>
+
+    <div class="days"><span id="days">15</span> days</div>
+
+    <div class="time">
+        <span id="hours">0</span> h 
+        <span id="minutes">0</span> m 
+        <span id="seconds">0</span> s
+    </div>
+
+    <a href="https://t.me/tgk" target="_blank" rel="noopener noreferrer" class="subscribe-btn">
+        Subscribe
+    </a>
+
+    <button onclick="copyInviteLink()" class="invite-btn">
+        Invite friends
+    </button>
+
+    <script>
+        function updateCountdown() {
+            const targetDate = new Date();
+            targetDate.setDate(targetDate.getDate() + 15);
+
+            function update() {
+                const now = new Date();
+                const difference = targetDate.getTime() - now.getTime();
+
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+                document.getElementById('days').textContent = days;
+                document.getElementById('hours').textContent = hours;
+                document.getElementById('minutes').textContent = minutes;
+                document.getElementById('seconds').textContent = seconds;
+            }
+
+            setInterval(update, 1000);
+            update();
+        }
+
+        function copyInviteLink() {
+            navigator.clipboard.writeText('https://t.me/bbookkeee_bot');
+        }
+
+        updateCountdown();
+    </script>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</body>
+</html>
