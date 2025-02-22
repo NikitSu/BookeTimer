@@ -158,6 +158,26 @@
                     update();
                 };
             };
+            const whitelistBtn = document.getElementById('whitelist-btn');
+            const subscribeBtn = document.getElementById('subscribe-btn');
+            const inviteBtn = document.getElementById('invite-btn');
+
+            if (tg.colorScheme === 'dark') {
+                whitelistBtn.style.backgroundColor = 'white';
+                whitelistBtn.style.color = 'black';
+                subscribeBtn.style.backgroundColor = '#383838';
+                subscribeBtn.style.color = 'white';
+                inviteBtn.style.backgroundColor = '#383838';
+                inviteBtn.style.color = 'white';
+            }
+            else {
+                whitelistBtn.style.backgroundColor = 'black';
+                whitelistBtn.style.color = 'white';
+                subscribeBtn.style.backgroundColor = '#e6e6e6';
+                subscribeBtn.style.color = 'black';
+                inviteBtn.style.backgroundColor = '#e6e6e6';
+                inviteBtn.style.color = 'black';
+            }
         }
         updateCountdown();
     </script>
