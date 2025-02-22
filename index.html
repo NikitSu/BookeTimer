@@ -167,26 +167,7 @@
         Telegram.WebApp.ready();
         const tg = Telegram.WebApp;
 
-        
-        
-        if (tg.colorScheme === 'dark') {
-            whitelistBtn.style.backgroundColor = getComputedStyle(document.documentElement)
-                .getPropertyValue('white');
-            whitelistBtn.style.color = getComputedStyle(document.documentElement)
-                .getPropertyValue('black');
-            subscribeBtn.style.backgroundColor = getComputedStyle(document.documentElement)
-                .getPropertyValue('white');
-            subscribeBtn.style.color = getComputedStyle(document.documentElement)
-                .getPropertyValue('black');
-        }
-        else {
-            whitelistBtn.style.backgroundColor = getComputedStyle(document.documentElement)
-                .getPropertyValue('black');
-            whitelistBtn.style.color = getComputedStyle(document.documentElement)
-                .getPropertyValue('white');
-        }
         tg.requestFullscreen();
-        tg.expand();
         tg.disableVerticalSwipes();
     </script>
     
