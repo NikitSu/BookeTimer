@@ -6,6 +6,7 @@
     <title>Countdown</title>
     <style>
         body {
+            
             margin: 0;
             min-height: 100vh;
             display: flex;
@@ -21,6 +22,7 @@
             /*margin-bottom: 2rem;*/
             width: 200px;
             height: 200px;
+            padding-top: 2rem;
         }
         h1 {
             font-size: 2.25rem;
@@ -41,17 +43,17 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #2a3033;
-            color: white;
+            
+            /*background-color: #383838;
+
+            background-color: #e6e6e6;
+
+            color: white;*/
             font-weight: bold;
             padding: 0.75rem 1.5rem;
             border-radius: 1.5rem;
             margin-bottom: 1rem;
             text-decoration: none;
-        }
-        .whitelist-btn {
-            background-color: var(--tg-theme-text-color);
-            color: var(--tg-color-scheme);
         }
         
     </style>
@@ -68,7 +70,7 @@
         <span id="minutes">0</span> m 
         <span id="seconds">0</span> s
     </div>
-    <a href="https://telegram.me/share/url?url=https://t.me/BookeeCoinBot&text=1234" target="_blank" rel="noopener noreferrer" class="whitelist-btn">
+    <a href="https://telegram.me/share/url?url=https://t.me/BookeeCoinBot&text=1234" target="_blank" rel="noopener noreferrer" class="whitelist-btn" id="whitelist-btn">
         Join the White List
     </a>
     <a href="https://t.me/durov" target="_blank" rel="noopener noreferrer" class="subscribe-btn">
@@ -81,6 +83,23 @@
 
     <script>
         function updateCountdown() {
+            /*const whitelistBtn = document.getElementById('whitelist-btn');
+            const subscribeBtn = document.getElementById('subscribe-btn');
+            const inviteBtn = document.getElementById('invite-btn');
+
+            if (tg.colorScheme === 'dark') {
+                whitelistBtn.style.backgroundColor = 'white';
+                whitelistBtn.style.color = 'black';
+                subscribeBtn.style.backgroundColor = '#e6e6e6';
+                subscribeBtn.style.color = 'black';
+            }
+            else {
+                whitelistBtn.style.backgroundColor = getComputedStyle(document.documentElement)
+                    .getPropertyValue('black');
+                whitelistBtn.style.color = getComputedStyle(document.documentElement)
+                    .getPropertyValue('white');
+            }*/
+
             const dbName = 'countdownDB';
             const dbVersion = 1;
             let db;
@@ -144,14 +163,20 @@
     </script>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
+
         Telegram.WebApp.ready();
         const tg = Telegram.WebApp;
 
-        const whitelistBtn = document.querySelector('.whitelist-btn');
+        
+        
         if (tg.colorScheme === 'dark') {
             whitelistBtn.style.backgroundColor = getComputedStyle(document.documentElement)
                 .getPropertyValue('white');
             whitelistBtn.style.color = getComputedStyle(document.documentElement)
+                .getPropertyValue('black');
+            subscribeBtn.style.backgroundColor = getComputedStyle(document.documentElement)
+                .getPropertyValue('white');
+            subscribeBtn.style.color = getComputedStyle(document.documentElement)
                 .getPropertyValue('black');
         }
         else {
@@ -160,9 +185,9 @@
             whitelistBtn.style.color = getComputedStyle(document.documentElement)
                 .getPropertyValue('white');
         }
-
         tg.requestFullscreen();
-        tg.disableVerticalSwipes();        
+        tg.expand();
+        tg.disableVerticalSwipes();
     </script>
     
 </body>
