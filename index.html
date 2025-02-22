@@ -36,32 +36,24 @@
             font-size: 1.875rem;
             margin-bottom: 2rem;
         }
-        .subscribe-btn {
+        .whitelist-btn, .subscribe-btn, .invite-btn {
+            width: 280px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #2a3033;
+            color: white;
+            font-weight: bold;
+            padding: 0.75rem 1.5rem;
+            border-radius: 1.5rem;
+            margin-bottom: 1rem;
+            text-decoration: none;
+        }
+        .whitelist-btn {
             background-color: var(--tg-theme-text-color);
             color: var(--tg-color-scheme);
-            font-weight: bold;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
-            margin-bottom: 1rem;
-            text-decoration: none;
-            transition: background-color 0.3s;
         }
-        .subscribe-btn:hover {
-            background-color: var(--tg-theme-button-color);
-        }
-        .invite-btn {
-            background-color: var(--tg-theme-button-color);
-            color: var(--tg-theme-text-color);
-            font-weight: bold;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
-            margin-bottom: 1rem;
-            text-decoration: none;
-            transition: background-color 0.3s;
-        }
-        .invite-btn:hover {
-            background-color: var(--tg-theme-text-color);
-        }
+        
     </style>
 </head>
 <body>
@@ -76,7 +68,9 @@
         <span id="minutes">0</span> m 
         <span id="seconds">0</span> s
     </div>
-
+    <a href="https://telegram.me/share/url?url=https://t.me/BookeeCoinBot&text=1234" target="_blank" rel="noopener noreferrer" class="whitelist-btn">
+        Join the White List
+    </a>
     <a href="https://t.me/durov" target="_blank" rel="noopener noreferrer" class="subscribe-btn">
         Subscribe
     </a>
@@ -153,10 +147,22 @@
         Telegram.WebApp.ready();
         const tg = Telegram.WebApp;
 
-        tg.requestFullscreen();
-        tg.disableVerticalSwipes();
+        const whitelistBtn = document.querySelector('.whitelist-btn');
+        if (tg.colorScheme === 'dark') {
+            whitelistBtn.style.backgroundColor = getComputedStyle(document.documentElement)
+                .getPropertyValue('white');
+            whitelistBtn.style.color = getComputedStyle(document.documentElement)
+                .getPropertyValue('black');
+        }
+        else {
+            whitelistBtn.style.backgroundColor = getComputedStyle(document.documentElement)
+                .getPropertyValue('black');
+            whitelistBtn.style.color = getComputedStyle(document.documentElement)
+                .getPropertyValue('white');
+        }
 
-        
+        tg.requestFullscreen();
+        tg.disableVerticalSwipes();        
     </script>
     
 </body>
