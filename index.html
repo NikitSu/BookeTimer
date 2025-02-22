@@ -165,13 +165,17 @@
             const inviteBtn = document.getElementById('invite-btn');
 
             if (tg.colorScheme === 'dark') {
-                console.log('dark');
-                whitelistBtn.style.backgroundColor = 'white';
-                whitelistBtn.style.color = 'black';
-                subscribeBtn.style.backgroundColor = '#383838';
-                subscribeBtn.style.color = 'white';
-                inviteBtn.style.backgroundColor = '#383838';
-                inviteBtn.style.color = 'white';
+                console.log('Текущая цветовая схема:', tg.colorScheme); // Добавляем более подробный лог
+                if (whitelistBtn && subscribeBtn && inviteBtn) { // Проверяем существование элементов
+                    whitelistBtn.style.backgroundColor = 'white';
+                    whitelistBtn.style.color = 'black';
+                    subscribeBtn.style.backgroundColor = '#383838';
+                    subscribeBtn.style.color = 'white';
+                    inviteBtn.style.backgroundColor = '#383838';
+                    inviteBtn.style.color = 'white';
+                } else {
+                    console.error('Один или несколько элементов не найдены');
+                }
             }
             else {
                 console.log('light');
