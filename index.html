@@ -73,32 +73,16 @@
     <a href="https://telegram.me/share/url?url=https://t.me/BookeeCoinBot&text=1234" target="_blank" rel="noopener noreferrer" class="whitelist-btn" id="whitelist-btn">
         Join the White List
     </a>
-    <a href="https://t.me/durov" target="_blank" rel="noopener noreferrer" class="subscribe-btn">
+    <a href="https://t.me/durov" target="_blank" rel="noopener noreferrer" class="subscribe-btn" id="subscribe-btn">
         Subscribe
     </a>
 
-    <a href="https://telegram.me/share/url?url=https://t.me/BookeeCoinBot&text=1234" target="_blank" rel="noopener noreferrer" class="invite-btn">
+    <a href="https://telegram.me/share/url?url=https://t.me/BookeeCoinBot&text=1234" target="_blank" rel="noopener noreferrer" class="invite-btn" id="invite-btn">
         Invite friends
     </a>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
         function updateCountdown() {
-            /*const whitelistBtn = document.getElementById('whitelist-btn');
-            const subscribeBtn = document.getElementById('subscribe-btn');
-            const inviteBtn = document.getElementById('invite-btn');
-
-            if (tg.colorScheme === 'dark') {
-                whitelistBtn.style.backgroundColor = 'white';
-                whitelistBtn.style.color = 'black';
-                subscribeBtn.style.backgroundColor = '#e6e6e6';
-                subscribeBtn.style.color = 'black';
-            }
-            else {
-                whitelistBtn.style.backgroundColor = getComputedStyle(document.documentElement)
-                    .getPropertyValue('black');
-                whitelistBtn.style.color = getComputedStyle(document.documentElement)
-                    .getPropertyValue('white');
-            }*/
 
             const dbName = 'countdownDB';
             const dbVersion = 1;
@@ -165,17 +149,12 @@
             const inviteBtn = document.getElementById('invite-btn');
 
             if (tg.colorScheme === 'dark') {
-                console.log('Текущая цветовая схема:', tg.colorScheme); // Добавляем более подробный лог
-                if (whitelistBtn && subscribeBtn && inviteBtn) { // Проверяем существование элементов
                     whitelistBtn.style.backgroundColor = 'white';
                     whitelistBtn.style.color = 'black';
                     subscribeBtn.style.backgroundColor = '#383838';
                     subscribeBtn.style.color = 'white';
                     inviteBtn.style.backgroundColor = '#383838';
                     inviteBtn.style.color = 'white';
-                } else {
-                    console.error('Один или несколько элементов не найдены');
-                }
             }
             else {
                 console.log('light');
