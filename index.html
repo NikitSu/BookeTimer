@@ -73,7 +73,7 @@
     <a href="https://telegram.me/share/url?url=https://t.me/BookeeCoinBot&text=1234" target="_blank" rel="noopener noreferrer" class="whitelist-btn" id="whitelist-btn">
         Join the White List
     </a>
-    <a href="https://t.me/bookecoin" target="_blank" rel="noopener noreferrer" class="subscribe-btn">
+    <a href="https://t.me/durov" target="_blank" rel="noopener noreferrer" class="subscribe-btn">
         Subscribe
     </a>
 
@@ -158,6 +158,8 @@
                     update();
                 };
             };
+            Telegram.WebApp.ready();
+            const tg = Telegram.WebApp;
             const whitelistBtn = document.getElementById('whitelist-btn');
             const subscribeBtn = document.getElementById('subscribe-btn');
             const inviteBtn = document.getElementById('invite-btn');
