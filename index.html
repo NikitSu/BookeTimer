@@ -148,6 +148,33 @@
                 inviteBtn.style.backgroundColor = '#e6e6e6';
                 inviteBtn.style.color = 'black';
             }
+            
+            whitelistBtn.addEventListener('click', function(e) {
+                e.preventDefault(); // Предотвращаем стандартное поведение ссылки
+                
+                const telegramId = tg.initDataUnsafe?.user?.id;
+                
+                if (telegramId) {
+                    // Отправляем POST запрос на сервер для сохранения ID
+                    fetch('/api/whitelist', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            telegramId: telegramId
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // После успешного сохранения открываем ссылку
+                            window.open(whitelistBtn.href, '_blank');
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
+                }
+            });
         }
         updateCountdown();
     </script>
