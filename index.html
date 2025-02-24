@@ -70,7 +70,7 @@
         <span id="minutes">0</span> m 
         <span id="seconds">0</span> s
     </div>
-    <a href="" target="_blank" rel="noopener noreferrer" class="whitelist-btn" id="whitelist-btn">
+    <a href="javascript:void(0)" class="whitelist-btn" id="whitelist-btn">
         Join the White List
     </a>
     <a href="https://t.me/bookecoin" target="_blank" rel="noopener noreferrer" class="subscribe-btn" id="subscribe-btn">
@@ -170,7 +170,6 @@
             const whitelistBtn = document.getElementById('whitelist-btn');
             
             whitelistBtn.addEventListener('click', function(e) {
-                // Предотвращаем переход по ссылке
                 e.preventDefault();
                 e.stopPropagation();
                 
@@ -178,34 +177,49 @@
                 console.log('Telegram ID:', telegramId);
                 
                 if (telegramId) {
-                    fetch('http://127.0.0.1:5000/api/whitelist', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
+                    // Создаем сокет-соединение
+                    const socket = new WebSocket('ws://localhost:3030');
+                    
+                    socket.onopen = function() {
+                        // Отправляем данные на сервер
+                        socket.send(JSON.stringify({
                             telegramId: telegramId
-                        })
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
+                        }));
+                    };
+                    
+                    socket.onmessage = function(event) {
+                        const response = JSON.parse(event.data);
+                        if (response.success) {
                             console.log('ID успешно сохранен в базу данных');
-                            // Можно добавить уведомление пользователю
                             tg.showPopup({
                                 title: 'Успех!',
                                 message: 'Вы успешно добавлены в WhiteList'
                             });
                         } else {
-                            console.error('Ошибка при сохранении:', data.error);
+                            console.error('Ошибка:', response.message);
+                            tg.showPopup({
+                                title: 'Ошибка',
+                                message: response.message
+                            });
                         }
-                    })
-                    .catch(error => console.error('Ошибка запроса:', error));
+                        socket.close();
+                    };
+                    
+                    socket.onerror = function(error) {
+                        console.error('Ошибка сокета:', error);
+                        tg.showPopup({
+                            title: 'Ошибка',
+                            message: 'Произошла ошибка при подключении к серверу'
+                        });
+                    };
                 } else {
                     console.error('Telegram ID не найден');
+                    tg.showPopup({
+                        title: 'Ошибка',
+                        message: 'Не удалось получить ваш Telegram ID'
+                    });
                 }
                 
-                // Предотвращаем любые дальнейшие действия по умолчанию
                 return false;
             });
         });
