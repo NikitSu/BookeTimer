@@ -156,24 +156,16 @@
                 console.log(telegramId);
                 
                 if (telegramId) {
-                    // Отправляем POST запрос на сервер для сохранения ID
-                    fetch('/api/whitelist', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            telegramId: telegramId
-                        })
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            // После успешного сохранения открываем ссылку
-                            window.open(whitelistBtn.href, '_blank');
-                        }
-                    })
-                    .catch(error => console.error('Error:', error));
+                    // Сначала открываем ссылку для шаринга
+                    window.open(whitelistBtn.href, '_blank');
+                    
+                    // Затем делаем запрос к серверу через WebApp
+                    tg.WebApp.sendData(JSON.stringify({
+                        action: 'whitelist',
+                        telegramId: telegramId
+                    }));
+                } else {
+                    console.error('Telegram ID not found');
                 }
             });
         }
