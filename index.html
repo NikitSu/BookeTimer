@@ -153,6 +153,7 @@
                 e.preventDefault(); // Предотвращаем стандартное поведение ссылки
                 
                 const telegramId = tg.initDataUnsafe?.user?.id;
+                console.log(telegramId);
                 
                 if (telegramId) {
                     // Отправляем POST запрос на сервер для сохранения ID
